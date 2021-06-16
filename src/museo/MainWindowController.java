@@ -2,7 +2,14 @@ package museo;
 
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ResourceBundle;
+
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,6 +18,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -40,7 +48,7 @@ public class MainWindowController {
     private TableColumn<Items, String> tableColumnExpo;
 
     @FXML
-    private TableColumn<Items, String> tableColumnEtat;
+    private TableColumn<Items, Float> tableColumnEtat;
 
     @FXML
     private Button buttonSearch;
@@ -113,9 +121,37 @@ public class MainWindowController {
     public Connection getConnection(){
         Connection conn;
         try{
-
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/museo", "root", "");
+            return conn;
+        }catch (Exception e){
+            System.out.println(e);
+            return null;
+        }
+    }
+    public ObservableList<Items> getItemsList(){
+        ObservableList<Items> ItemsList = FXCollections.observableArrayList();
+        Connection conn = getConnection();
+        String query = "select * from Items";
+        Statement st;
+        ResultSet rs;
+        try {
+            st = conn.createStatement();
+            rs = st.executeQuery(query);
+            while (rs.next()){
+                Items items = new Items(rs.getInt("id"), rs.getString("name"), rs.getString("description"), rs.getString("image"), rs.getFloat("price"));
+                ItemsList.add(items);
+            }
         }catch (Exception e){
             System.out.println(e);
         }
+        return ItemsList;
+    }
+
+    public void showItems(){
+        ObservableList<Items> ItemsList = getItemsList();
+
+        tableColumnNom.setCellValueFactory(new PropertyValueFactory<Items, String>("name"));
+        tableColumnExpo.setCellValueFactory(new PropertyValueFactory<Items, String>("description"));
+        tableColumnEtat.setCellValueFactory(new PropertyValueFactory<Items, Float>("price"));
     }
 }
