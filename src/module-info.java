@@ -6,3 +6,4 @@ module Museo {
 
     opens museo;
 }
+

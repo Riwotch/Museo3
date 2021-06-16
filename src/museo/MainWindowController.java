@@ -1,4 +1,9 @@
 package museo;
+
+import java.net.URL;
+import java.sql.Connection;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
@@ -11,61 +16,98 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-    public class MainWindowController {
+public class MainWindowController {
 
-        @FXML
-        private Tab tabInventaire;
+    @FXML
+    private ResourceBundle resources;
 
-        @FXML
-        private AnchorPane tabPaneInventory;
+    @FXML
+    private URL location;
 
-        @FXML
-        private TableView<?> tableViewInventory;
+    @FXML
+    private Tab tabInventaire;
 
-        @FXML
-        private TableColumn<?, ?> tableColumnNom;
+    @FXML
+    private AnchorPane tabPaneInventory;
 
-        @FXML
-        private TableColumn<?, ?> tableColumnExpo;
+    @FXML
+    private TableView<Items> tableViewInventory;
 
-        @FXML
-        private TableColumn<?, ?> tableColumnEtat;
+    @FXML
+    private TableColumn<Items, String> tableColumnNom;
 
-        @FXML
-        private Button buttonSearch;
+    @FXML
+    private TableColumn<Items, String> tableColumnExpo;
 
-        @FXML
-        private Button buttonAdd;
+    @FXML
+    private TableColumn<Items, String> tableColumnEtat;
 
-        @FXML
-        private TextField textFieldInventory;
+    @FXML
+    private Button buttonSearch;
 
-        @FXML
-        private ImageView ImageViewInventory;
+    @FXML
+    private Button buttonAdd;
 
-        @FXML
-        private TabPane tabPaneDetail;
+    @FXML
+    private TextField textFieldInventory;
 
-        @FXML
-        private Tab tabDescription;
+    @FXML
+    private ImageView ImageViewInventory;
 
-        @FXML
-        private Tab tabBibliographie;
+    @FXML
+    private TabPane tabPaneDetail;
 
-        @FXML
-        private Tab tabHistorique;
+    @FXML
+    private Tab tabDescription;
 
-        @FXML
-        private Tab tabAchats;
+    @FXML
+    private Tab tabBibliographie;
 
-        @FXML
-        private Tab tabVentes;
+    @FXML
+    private Tab tabHistorique;
 
-        @FXML
-        private Font x3;
+    @FXML
+    private Tab tabAchats;
 
-        @FXML
-        private Color x4;
+    @FXML
+    private Tab tabVentes;
+
+    @FXML
+    private Font x3;
+
+    @FXML
+    private Color x4;
+
+    @FXML
+    void handleButtonAdd(ActionEvent event) {
+    }
+
+    @FXML
+    void handleButtonSearch(ActionEvent event) {
 
     }
 
+    @FXML
+    void initialize() {
+        assert tabInventaire != null : "fx:id=\"tabInventaire\" was not injected: check your FXML file 'MainWindowSave.fxml'.";
+        assert tabPaneInventory != null : "fx:id=\"tabPaneInventory\" was not injected: check your FXML file 'MainWindowSave.fxml'.";
+        assert tableViewInventory != null : "fx:id=\"tableViewInventory\" was not injected: check your FXML file 'MainWindowSave.fxml'.";
+        assert tableColumnNom != null : "fx:id=\"tableColumnNom\" was not injected: check your FXML file 'MainWindowSave.fxml'.";
+        assert tableColumnExpo != null : "fx:id=\"tableColumnExpo\" was not injected: check your FXML file 'MainWindowSave.fxml'.";
+        assert tableColumnEtat != null : "fx:id=\"tableColumnEtat\" was not injected: check your FXML file 'MainWindowSave.fxml'.";
+        assert buttonSearch != null : "fx:id=\"buttonSearch\" was not injected: check your FXML file 'MainWindowSave.fxml'.";
+        assert buttonAdd != null : "fx:id=\"buttonAdd\" was not injected: check your FXML file 'MainWindowSave.fxml'.";
+        assert textFieldInventory != null : "fx:id=\"textFieldInventory\" was not injected: check your FXML file 'MainWindowSave.fxml'.";
+        assert ImageViewInventory != null : "fx:id=\"ImageViewInventory\" was not injected: check your FXML file 'MainWindowSave.fxml'.";
+        assert tabPaneDetail != null : "fx:id=\"tabPaneDetail\" was not injected: check your FXML file 'MainWindowSave.fxml'.";
+        assert tabDescription != null : "fx:id=\"tabDescription\" was not injected: check your FXML file 'MainWindowSave.fxml'.";
+        assert tabBibliographie != null : "fx:id=\"tabBibliographie\" was not injected: check your FXML file 'MainWindowSave.fxml'.";
+        assert tabHistorique != null : "fx:id=\"tabHistorique\" was not injected: check your FXML file 'MainWindowSave.fxml'.";
+        assert tabAchats != null : "fx:id=\"tabAchats\" was not injected: check your FXML file 'MainWindowSave.fxml'.";
+        assert tabVentes != null : "fx:id=\"tabVentes\" was not injected: check your FXML file 'MainWindowSave.fxml'.";
+        assert x3 != null : "fx:id=\"x3\" was not injected: check your FXML file 'MainWindowSave.fxml'.";
+        assert x4 != null : "fx:id=\"x4\" was not injected: check your FXML file 'MainWindowSave.fxml'.";
+
+    }
+
+}
