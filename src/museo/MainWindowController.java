@@ -110,4 +110,12 @@ public class MainWindowController {
 
     }
 
+    public Connection getConnection(){
+        Connection conn;
+        try{
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
 }
