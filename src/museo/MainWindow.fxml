@@ -45,7 +45,9 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -54,9 +56,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.TextFlow?>
 
-<VBox prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museo.Controller">
+<VBox prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museo.MainWindowController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -107,19 +108,65 @@
                         <items>
                               <AnchorPane id="Content" fx:id="tabPaneInventory" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="486.0">
                                  <children>
-                                    <TableView fx:id="tableViewInventory" layoutX="17.0" layoutY="61.0" prefHeight="511.0" prefWidth="520.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="12.200000000000045" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="61.0">
+                                    <TableView fx:id="tableViewInventory" layoutX="17.0" layoutY="61.0" onMouseClicked="#clickItem" prefHeight="511.0" prefWidth="520.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="12.200000000000045" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="61.0">
                                        <columns>
                                           <TableColumn fx:id="tableColumnNom" editable="false" prefWidth="280.80000591278076" text="Nom" />
-                                          <TableColumn fx:id="tableColumnExpo" editable="false" prefWidth="57.600006103515625" text="Expo" />
-                                          <TableColumn fx:id="tableColumnEtat" editable="false" prefWidth="75.0" text="Etat" />
+                                          <TableColumn fx:id="tableColumnTag" editable="false" prefWidth="92.79995727539062" text="Catégorie" />
+                                          <TableColumn fx:id="tableColumnStatus" editable="false" prefWidth="252.800048828125" text="Status" />
                                        </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                        </columnResizePolicy>
                                     </TableView>
-                                    <Button fx:id="buttonSearch" layoutX="294.0" layoutY="19.0" mnemonicParsing="false" text="Rechercher" AnchorPane.topAnchor="19.00000000000002" />
-                                    <Button fx:id="buttonAdd" layoutX="507.0" layoutY="20.0" mnemonicParsing="false" text="+" AnchorPane.rightAnchor="15.400000000000045" AnchorPane.topAnchor="20.0" />
                                     <TextField fx:id="textFieldInventory" layoutX="12.0" layoutY="19.0" prefHeight="26.0" prefWidth="281.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="18.99999999999998" />
+                                    <Button fx:id="buttonModify" layoutX="454.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleButtonModify" prefHeight="16.0" prefWidth="14.0" AnchorPane.rightAnchor="59.60000000000002" AnchorPane.topAnchor="19.0">
+                                       <graphic>
+                                          <ImageView fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@img/icons8_edit_64px.png" />
+                                             </image>
+                                             <effect>
+                                                <InnerShadow />
+                                             </effect>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="buttonAdd" layoutX="499.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleButtonAdd" prefHeight="16.0" prefWidth="14.0" AnchorPane.rightAnchor="14.600000000000023" AnchorPane.topAnchor="19.0">
+                                       <graphic>
+                                          <ImageView fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@img/icons8_add_64px.png" />
+                                             </image>
+                                             <effect>
+                                                <InnerShadow />
+                                             </effect>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="buttonSearch" layoutX="294.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleButtonSearch" prefHeight="16.0" prefWidth="14.0" AnchorPane.topAnchor="19.0">
+                                       <graphic>
+                                          <ImageView fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@img/icons8_search_in_list_64px.png" />
+                                             </image>
+                                             <effect>
+                                                <InnerShadow />
+                                             </effect>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="buttonCancelSearch" layoutX="336.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleButtonCancelSearch" prefHeight="16.0" prefWidth="14.0" AnchorPane.leftAnchor="336.0" AnchorPane.rightAnchor="177.60000000000005" AnchorPane.topAnchor="19.0">
+                                       <graphic>
+                                          <ImageView fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@img/icons8_close_window_52px.png" />
+                                             </image>
+                                             <effect>
+                                                <InnerShadow />
+                                             </effect>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
                                  </children>
                               </AnchorPane>
                           <AnchorPane prefHeight="547.0" prefWidth="630.0">
@@ -130,7 +177,7 @@
                                              <children>
                                                 <ImageView fx:id="ImageViewInventory" fitHeight="275.0" fitWidth="192.0" layoutX="126.0" layoutY="56.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="55.52000732421874" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="126.0" AnchorPane.topAnchor="56.0">
                                                    <image>
-                                                      <Image url="@../../../Museo3/src/museo/img/logo.png" />
+                                                      <Image url="@img/logo.png" />
                                                    </image>
                                                 </ImageView>
                                              </children>
@@ -143,7 +190,7 @@
                                                       <content>
                                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                                <children>
-                                                                  <TextFlow layoutX="14.0" layoutY="-5.0" prefHeight="167.0" prefWidth="444.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                  <TextArea fx:id="textAreaDescription" editable="false" layoutY="4.0" prefHeight="254.0" prefWidth="446.0" wrapText="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0" />
                                                                </children>
                                                             </AnchorPane>
                                                       </content>
@@ -176,12 +223,12 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab fx:id="tabAchats" text="Achats">
+          <Tab fx:id="tabTransactions" text="Transactions">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
           </Tab>
-            <Tab fx:id="tabVentes" text="Ventes">
+            <Tab fx:id="tabPretsEmprunts" text="Prêts/Emprunts">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>

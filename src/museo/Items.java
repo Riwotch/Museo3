@@ -6,13 +6,23 @@ public class Items {
     private String description;
     private String image;
     private float price;
+    private String eraName;
+    private String biblioTitle;
+    private String biblioLink;
+    private String tagName;
+    private String subStateName;
 
-    public Items(Integer id, String name, String description, String image, float price) {
+    public Items(Integer id, String name, String description, String image, float price, String eraName, String biblioTitle,String biblioLink, String tagName, String subStateName) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.image = image;
         this.price = price;
+        this.eraName = eraName;
+        this.biblioTitle = biblioTitle;
+        this.biblioLink = biblioLink;
+        this.tagName = tagName;
+        this.subStateName = subStateName;
     }
 
     public Integer getId() {
@@ -34,4 +44,14 @@ public class Items {
     public float getPrice() {
         return price;
     }
+
+    public String getEraName() { return eraName; }
+
+    public String getBiblioTitle() { return biblioTitle; }
+
+    public String getBiblioLink() { return biblioLink; }
+
+    public String getTagName() { return tagName;  }
+
+    public String getSubStateName() { return subStateName; }
 }
